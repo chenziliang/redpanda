@@ -1,7 +1,11 @@
-find_package(Zstd REQUIRED)
-find_package(LZ4 REQUIRED)
-find_package(Snappy REQUIRED)
-find_package(ZLIB REQUIRED)
+if (NOT TP_BUILD)
+    find_package(Zstd REQUIRED)
+    find_package(LZ4 REQUIRED)
+    find_package(Snappy REQUIRED)
+    find_package(ZLIB REQUIRED)
+else()
+    message(STATUS "TP BUILD...")
+endif()
 
 v_cc_library(
   NAME

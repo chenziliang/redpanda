@@ -1,5 +1,10 @@
-find_package(xxHash REQUIRED)
-find_package(Crc32c REQUIRED)
+if (NOT TP_BUILD)
+    find_package(xxHash REQUIRED)
+    find_package(Crc32c REQUIRED)
+else()
+    message(STATUS "TP BUILD...")
+endif()
+
 v_cc_library(
   NAME rphashing
   SRCS murmur.cc

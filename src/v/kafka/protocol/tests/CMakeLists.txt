@@ -1,4 +1,8 @@
-find_package(CppKafka CONFIG REQUIRED)
+if (NOT TP_BUILD)
+    find_package(CppKafka CONFIG REQUIRED)
+else()
+    message(STATUS "TP BUILD...")
+endif()
 
 rp_test(
   UNIT_TEST

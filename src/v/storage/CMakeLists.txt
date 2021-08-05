@@ -1,4 +1,9 @@
-find_package(Roaring REQUIRED)
+if (NOT TP_BUILD)
+    find_package(Roaring REQUIRED)
+else()
+    message(STATUS "TP BUILD...")
+endif()
+
 v_cc_library(
   NAME storage
   SRCS

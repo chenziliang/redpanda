@@ -1,5 +1,10 @@
-find_package(Hdrhistogram)
-find_package(Base64)
+if (NOT TP_BUILD)
+    find_package(Hdrhistogram)
+    find_package(Base64)
+else()
+    message(STATUS "TP build...")
+endif()
+
 v_cc_library(
   NAME utils
   SRCS
