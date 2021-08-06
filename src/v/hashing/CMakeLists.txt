@@ -1,5 +1,4 @@
 if (NOT TP_BUILD)
-    find_package(xxHash REQUIRED)
     find_package(Crc32c REQUIRED)
 else()
     message(STATUS "TP BUILD...")
@@ -11,7 +10,6 @@ v_cc_library(
   COPTS
     -Wno-implicit-fallthrough
   DEPS
-    xxHash::xxhash
     Crc32c::crc32c
   DEFINES
     -DXXH_PRIVATE_API

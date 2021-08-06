@@ -15,6 +15,12 @@ add_library(Zstd::zstd ALIAS zstd)
 add_library(Boost::unit_test_framework ALIAS _boost_test)
 add_library(Crc32c::crc32c ALIAS crc32c)
 
+if (SPLIT_SHARED_LIBRARIES)
+  add_library(Hdrhistogram::hdr_histogram ALIAS hdr_histogram)
+else()
+  add_library(Hdrhistogram::hdr_histogram ALIAS hdr_histogram_static)
+endif()
+
 # add code
 include(testing)
 include(set_option)

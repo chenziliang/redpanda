@@ -13,11 +13,15 @@
 
 #include "seastarx.h"
 
+// TP starts: remove xxhash dep by inlining
+#define XXH_INLINE_ALL
+#include "xxhash.h"
+// TP ends
+
 #include <cstdint>
 #include <cstring>
 #include <functional>
 #include <string_view>
-#include <xxhash.h>
 
 inline uint64_t xxhash_64(const unsigned char* data, size_t length) {
     return XXH64(data, length, 0);
