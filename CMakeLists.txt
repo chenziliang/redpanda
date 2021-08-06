@@ -1,5 +1,12 @@
 set(RP_ROOT "${CMAKE_CURRENT_SOURCE_DIR}")
 
-list(APPEND CMAKE_MODULE_PATH "${RP_ROOT}/cmake-tp")
-
-include(main)
+if (TP_BUILD)
+  list(APPEND CMAKE_MODULE_PATH "${RP_ROOT}/cmake-tp")
+  include(main)
+elseif (NOT VECTORIZED_CMAKE_DIR)
+  list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+  include(main)
+else()
+  list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+  include(${VECTORIZED_CMAKE_DIR}/main.cmake)
+endif()
