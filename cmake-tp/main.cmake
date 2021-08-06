@@ -13,9 +13,10 @@ add_library(ZLIB::ZLIB ALIAS zlib)
 add_library(Roaring::roaring ALIAS roaring)
 add_library(Zstd::zstd ALIAS zstd)
 add_library(Boost::unit_test_framework ALIAS _boost_test)
+add_library(Crc32c::crc32c ALIAS crc32c)
 
 # add code
 include(testing)
 include(set_option)
 include(v_library)
-# add_subdirectory(src)
+add_subdirectory(src)
