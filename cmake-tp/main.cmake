@@ -1,5 +1,9 @@
 include(diagnostic_colors)
 
+set(CMAKE_CXX_STANDARD 20)
+
+add_compile_definitions(TP_BUILD)
+
 # from seastar/CMakeLists.txt. unfortunately this snippet doesn't appear to be
 # installed along with the rest of seastar.
 function (seastar_generate_swagger)

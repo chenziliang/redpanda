@@ -25,7 +25,9 @@
 #include <seastar/core/rwlock.hh>
 #include <seastar/core/shared_ptr.hh>
 
-#include <roaring/roaring.hh>
+// TP starts : internal roaring
+#include "roaring/croaring.hh"
+// TP ends
 
 namespace storage::internal {
 

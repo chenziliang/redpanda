@@ -25,7 +25,10 @@
 #include <absl/container/btree_map.h>
 #include <absl/container/node_hash_map.h>
 #include <fmt/core.h>
-#include <roaring/roaring.hh>
+
+// TP starts : internal roaring
+#include "roaring/croaring.hh"
+// TP ends
 
 namespace storage::internal {
 

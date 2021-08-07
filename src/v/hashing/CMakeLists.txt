@@ -1,7 +1,5 @@
 if (NOT TP_BUILD)
     find_package(Crc32c REQUIRED)
-else()
-    message(STATUS "TP BUILD...")
 endif()
 
 v_cc_library(

@@ -1,4 +1,7 @@
-find_package(Roaring REQUIRED)
+if(NOT TP_BUILD)
+  find_package(Roaring REQUIRED)
+endif()
+
 include(rpcgen)
 rpcgen(
   TARGET controller_rpc
