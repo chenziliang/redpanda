@@ -46,7 +46,7 @@ else()
 endif()
 
 # Alias libraries to minimize the cmake file changes
-add_library(Base64::base64 ALIAS base64)
+add_library(Base64::base64 ALIAS base64_ext)
 add_library(LZ4::LZ4 ALIAS lz4)
 add_library(Snappy::snappy ALIAS snappy)
 add_library(ZLIB::ZLIB ALIAS zlib)
