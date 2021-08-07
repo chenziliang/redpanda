@@ -1,6 +1,9 @@
 include(diagnostic_colors)
 
-set(CMAKE_CXX_STANDARD 20)
+# HACK rapidjson
+
+add_library (rapidjson_headers_only INTERFACE)
+target_include_directories (rapidjson_headers_only SYSTEM BEFORE INTERFACE ${RAPIDJSON_INCLUDE_DIR})
 
 add_compile_definitions(TP_BUILD)
 
