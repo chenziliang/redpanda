@@ -31,9 +31,9 @@ function (seastar_generate_swagger)
   set (${args_VAR} ${args_OUT_FILE} PARENT_SCOPE)
 endfunction ()
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
 
 if((EXISTS "${PROJECT_BINARY_DIR}/bin/kafka-python-env") AND (EXISTS "${PROJECT_BINARY_DIR}/bin/kafka-codegen-venv"))
   message(STATUS "Kafka protocol generators are already created")
@@ -52,7 +52,7 @@ else()
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
 endif()
 
-# Alias libraries to minimize the cmake file changes
+# Alias libraries from TP to minimize the cmake file changes in RP
 add_library(Base64::base64 ALIAS base64_ext)
 add_library(LZ4::LZ4 ALIAS lz4)
 add_library(Snappy::snappy ALIAS snappy)
@@ -60,7 +60,9 @@ add_library(ZLIB::ZLIB ALIAS zlib)
 add_library(Roaring::roaring ALIAS roaring)
 add_library(Zstd::zstd ALIAS zstd)
 add_library(Boost::unit_test_framework ALIAS _boost_test)
+add_library(boost_filesystem ALIAS _boost_filesystem)
 add_library(Crc32c::crc32c ALIAS crc32c)
+add_library(avrocpp_s ALIAS avrocpp)
 
 if (SPLIT_SHARED_LIBRARIES)
   add_library(Hdrhistogram::hdr_histogram ALIAS hdr_histogram)

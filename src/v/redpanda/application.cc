@@ -288,7 +288,9 @@ void application::hydrate_config(const po::variables_map& cfg) {
             vlog(_log.info, "{}.{}\t- {}", service, val.str(), item.desc());
         };
     };
-    _redpanda_enabled = config["redpanda"];
+    // TP starts: FIXME upgrade TP's yamlcpp lib to latest
+    _redpanda_enabled = config["redpanda"].IsDefined();
+    // TP ends
     if (_redpanda_enabled) {
         ss::smp::invoke_on_all([&config] {
             config::shard_local_cfg().read_yaml(config);
