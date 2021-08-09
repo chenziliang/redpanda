@@ -65,9 +65,9 @@ add_library(Crc32c::crc32c ALIAS crc32c)
 add_library(avrocpp_s ALIAS avrocpp)
 
 if (SPLIT_SHARED_LIBRARIES)
-  add_library(Hdrhistogram::hdr_histogram ALIAS hdr_histogram)
+  add_library(Hdrhistogram::hdr_histogram ALIAS hdr_histogram_c)
 else()
-  add_library(Hdrhistogram::hdr_histogram ALIAS hdr_histogram_static)
+  add_library(Hdrhistogram::hdr_histogram ALIAS hdr_histogram_c_static)
 endif()
 
 # add code
