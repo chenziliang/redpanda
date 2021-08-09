@@ -10,6 +10,7 @@ v_cc_library(
     Seastar::seastar
     v::bytes
     v::http
+    ssl
 )
 add_subdirectory(tests)
 add_subdirectory(test_client)
