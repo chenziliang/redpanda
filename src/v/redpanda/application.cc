@@ -247,9 +247,11 @@ void application::setup_metrics() {
 }
 
 void application::validate_arguments(const po::variables_map& cfg) {
-    if (!cfg.count("redpanda-cfg")) {
-        throw std::invalid_argument("Missing redpanda-cfg flag");
+    // TP starts : rename redpanda-cfg to config
+    if (!cfg.count("config")) {
+        throw std::invalid_argument("Missing config flag");
     }
+    // TP ends
 }
 
 void application::init_env() { std::setvbuf(stdout, nullptr, _IOLBF, 1024); }
@@ -262,14 +264,18 @@ ss::app_template application::setup_app_template() {
     app_cfg.auto_handle_sigint_sigterm = false;
     auto app = ss::app_template(app_cfg);
     app.add_options()(
-      "redpanda-cfg",
+      // TP starts : rename redpanda-cfg to config
+      "config",
+      // TP ends
       po::value<std::string>(),
       ".yaml file config for redpanda");
     return app;
 }
 
 void application::hydrate_config(const po::variables_map& cfg) {
-    std::filesystem::path cfg_path(cfg["redpanda-cfg"].as<std::string>());
+      // TP starts : rename redpanda-cfg to config
+    std::filesystem::path cfg_path(cfg["config"].as<std::string>());
+      // TP ends
     auto buf = read_fully(cfg_path).get0();
     // see https://github.com/jbeder/yaml-cpp/issues/765
     auto workaround = ss::uninitialized_string(buf.size_bytes());
@@ -289,7 +295,7 @@ void application::hydrate_config(const po::variables_map& cfg) {
         };
     };
     // TP starts: FIXME upgrade TP's yamlcpp lib to latest
-    _redpanda_enabled = config["redpanda"].IsDefined();
+    _redpanda_enabled = !!config["redpanda"];
     // TP ends
     if (_redpanda_enabled) {
         ss::smp::invoke_on_all([&config] {
