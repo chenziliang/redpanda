@@ -37,9 +37,14 @@ v_cc_library(
     v::finjector
     v::model
   )
+
 add_subdirectory(tests)
 add_subdirectory(tron)
 add_subdirectory(kvelldb)
+
+# TP starts: for raftgen_service.h
+target_include_directories(v_raft PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/../)
+# TP ends
 
 set_source_files_properties(
     consensus.cc # too big => negative impact on minimal rebuilds for unity

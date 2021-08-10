@@ -22,5 +22,12 @@
 // branch in a codebase is likely counterproductive; however, annotating
 // specific branches that are both hot and consistently mispredicted is likely
 // to yield performance improvements.
+// TP starts
+#ifndef likely
 #define likely(cond) __builtin_expect(!!(cond), true)
+#endif
+
+#ifndef unlikely
 #define unlikely(cond) __builtin_expect(!!(cond), false)
+#endif
+// TP ends
